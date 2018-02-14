@@ -68,6 +68,7 @@ import org.codehaus.plexus.component.repository.exception.ComponentLookupExcepti
 import org.codehaus.plexus.util.ReflectionUtils;
 import org.codehaus.plexus.util.StringUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.sonatype.aether.impl.ArtifactResolver;
 
 /**
  * This rule will enforce that all plugins specified in the poms have a version declared.
@@ -159,6 +160,12 @@ public class RequirePluginVersions
     /** The lifecycles. */
     private Collection<Lifecycle> lifecycles;
 
+    /** The factory. */
+    ArtifactFactory factory;
+    
+    /** The resolver. */
+    ArtifactResolver resolver;
+
     /** The local. */
     private ArtifactRepository local;
 
@@ -196,6 +203,8 @@ public class RequirePluginVersions
 
             session = (MavenSession) helper.evaluate( "${session}" );
             pluginManager = (PluginManager) helper.getComponent( PluginManager.class );
+            factory = (ArtifactFactory) helper.getComponent( ArtifactFactory.class );
+            resolver = (ArtifactResolver) helper.getComponent( ArtifactResolver.class );
             local = (ArtifactRepository) helper.evaluate( "${localRepository}" );
             remoteRepositories = project.getRemoteArtifactRepositories();
 
