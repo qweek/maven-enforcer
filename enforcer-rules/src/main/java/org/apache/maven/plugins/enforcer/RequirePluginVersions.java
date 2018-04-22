@@ -69,6 +69,7 @@ import org.codehaus.plexus.util.ReflectionUtils;
 import org.codehaus.plexus.util.StringUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.sonatype.aether.impl.ArtifactResolver;
+import org.sonatype.aether.resolution.ArtifactRequest;
 
 /**
  * This rule will enforce that all plugins specified in the poms have a version declared.
@@ -556,7 +557,9 @@ public class RequirePluginVersions
 
         try
         {
-            this.resolver.resolve( artifact, pluginRepositories, this.local );
+            
+            this.resolver.resolveArtifact( session, request );
+              //esolve( artifact, pluginRepositories, this.local );
             plugin.setVersion( artifact.getVersion() );
         }
         catch ( ArtifactResolutionException e )
