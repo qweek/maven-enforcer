@@ -63,7 +63,7 @@
     </site>
   </distributionManagement>
   <properties>
-    <maven.version>3.6.3</maven.version>
+    <maven.version>3.8.1</maven.version>
     <maven.site.path>enforcer-archives/enforcer-LATEST</maven.site.path>
     <javaVersion>7</javaVersion>
   </properties>
